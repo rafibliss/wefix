@@ -206,7 +206,7 @@ export default function AboutPage() {
         </div>
       </ScrollReveal>
 
-      {/* Device Categories Covered */}
+
       <div className="space-y-8">
         <ScrollReveal variant="up">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -247,7 +247,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* FAQ Accordion Section */}
+
       <div className="max-w-3xl mx-auto space-y-8">
         <ScrollReveal variant="up">
           <div className="text-center space-y-2">
@@ -271,7 +271,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Final CTA Card */}
+
       <ScrollReveal variant="zoom">
         <div className="rounded-3xl bg-gradient-to-r from-zinc-900 via-[#111113] to-zinc-900 border border-[#27272A] p-8 sm:p-12 text-center space-y-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
