@@ -76,6 +76,7 @@ export default function TechnicianOverviewPage() {
   const approvedServices = services.filter((s) => s.approvalStatus === "approved").length;
   const pendingRequests = bookings.filter((b) => b.status === "requested").length;
   const inProgressJobs = bookings.filter((b) => b.status === "in-progress" || b.status === "accepted").length;
+  const completedJobs = bookings.filter((b) => b.status === "completed").length;
 
   const statusColors: Record<string, string> = {
     requested: "bg-blue-950/40 text-blue-300 border-blue-800",
@@ -158,6 +159,64 @@ export default function TechnicianOverviewPage() {
           <p className="text-[11px] text-zinc-400">
             {inProgressJobs} active jobs in progress
           </p>
+        </div>
+      </div>
+
+      {/* Visual Data Analytics: Job Workflow Distribution (Requirement: Charts and graphs) */}
+      <div className="p-6 rounded-2xl bg-[#111113] border border-[#27272A] shadow-xl space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-sm font-bold text-white">Repair Pipeline Distribution</h2>
+            <p className="text-xs text-zinc-400">Visual progress of incoming, in-progress, and settled jobs</p>
+          </div>
+          <span className="text-xs font-mono text-zinc-400">{bookings.length} Tracked</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div className="p-4 rounded-xl bg-zinc-900/70 border border-[#27272A] space-y-2">
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-400">Requested / New</span>
+              <span className="font-bold text-blue-400">{pendingRequests}</span>
+            </div>
+            <div className="h-2 rounded-full bg-zinc-950 overflow-hidden">
+              <div
+                className="h-full bg-blue-500 rounded-full transition-all"
+                style={{
+                  width: `${Math.min(100, Math.max(8, (pendingRequests / Math.max(1, bookings.length)) * 100))}%`
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-zinc-900/70 border border-[#27272A] space-y-2">
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-400">In Progress</span>
+              <span className="font-bold text-amber-400">{inProgressJobs}</span>
+            </div>
+            <div className="h-2 rounded-full bg-zinc-950 overflow-hidden">
+              <div
+                className="h-full bg-amber-500 rounded-full transition-all"
+                style={{
+                  width: `${Math.min(100, Math.max(8, (inProgressJobs / Math.max(1, bookings.length)) * 100))}%`
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-zinc-900/70 border border-[#27272A] space-y-2">
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-400">Completed & Settled</span>
+              <span className="font-bold text-emerald-400">{completedJobs}</span>
+            </div>
+            <div className="h-2 rounded-full bg-zinc-950 overflow-hidden">
+              <div
+                className="h-full bg-emerald-500 rounded-full transition-all"
+                style={{
+                  width: `${Math.min(100, Math.max(8, (completedJobs / Math.max(1, bookings.length)) * 100))}%`
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 

@@ -85,6 +85,12 @@ export default function MyServicesPage() {
           if (!ignore) {
             setServices(data.services || []);
           }
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          console.error("API error fetching technician services:", res.status, errData);
+          if (!ignore) {
+            toast.error(errData.message || `Failed to load your services (Error ${res.status})`);
+          }
         }
       } catch (err) {
         console.error("Error fetching technician services:", err);

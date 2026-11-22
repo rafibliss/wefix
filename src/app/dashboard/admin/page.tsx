@@ -21,6 +21,7 @@ interface OverviewMetrics {
   pendingServices: number;
   totalBookings: number;
   totalRevenue: number;
+  approvedServices?: number;
 }
 
 interface ServiceItem {
@@ -214,6 +215,89 @@ export default function AdminOverviewPage() {
           <span>Transactions</span>
           <ArrowRight className="h-4 w-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
         </Link>
+      </div>
+
+      {/* Visual Analytics & Data Visualization */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="bg-[#111113] border border-[#27272A] rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-bold text-white">User Base Composition</h2>
+            <span className="text-xs text-zinc-400">{metrics?.totalUsers || 0} Total</span>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-zinc-400">Technicians</span>
+                <span className="font-semibold text-amber-400">{metrics?.totalTechnicians || 0}</span>
+              </div>
+              <div className="h-2 rounded-full bg-zinc-900 overflow-hidden">
+                <div
+                  className="h-full bg-amber-500 rounded-full transition-all"
+                  style={{
+                    width: `${Math.min(100, Math.max(10, ((metrics?.totalTechnicians || 0) / Math.max(1, metrics?.totalUsers || 1)) * 100))}%`
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-zinc-400">Customers & Staff</span>
+                <span className="font-semibold text-blue-400">
+                  {Math.max(0, (metrics?.totalUsers || 0) - (metrics?.totalTechnicians || 0))}
+                </span>
+              </div>
+              <div className="h-2 rounded-full bg-zinc-900 overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 rounded-full transition-all"
+                  style={{
+                    width: `${Math.min(100, Math.max(10, ((Math.max(0, (metrics?.totalUsers || 0) - (metrics?.totalTechnicians || 0))) / Math.max(1, metrics?.totalUsers || 1)) * 100))}%`
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#111113] border border-[#27272A] rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-bold text-white">Service Moderation Status</h2>
+            <span className="text-xs text-zinc-400">Catalog Health</span>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-zinc-400">Approved & Live</span>
+                <span className="font-semibold text-emerald-400">{metrics?.approvedServices || 0}</span>
+              </div>
+              <div className="h-2 rounded-full bg-zinc-900 overflow-hidden">
+                <div
+                  className="h-full bg-emerald-500 rounded-full transition-all"
+                  style={{
+                    width: `${Math.min(100, Math.max(10, ((metrics?.approvedServices || 0) / Math.max(1, (metrics?.approvedServices || 0) + (metrics?.pendingServices || 0))) * 100))}%`
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-zinc-400">Pending Review</span>
+                <span className="font-semibold text-rose-400">{metrics?.pendingServices || 0}</span>
+              </div>
+              <div className="h-2 rounded-full bg-zinc-900 overflow-hidden">
+                <div
+                  className="h-full bg-rose-500 rounded-full transition-all"
+                  style={{
+                    width: `${Math.min(100, Math.max(10, ((metrics?.pendingServices || 0) / Math.max(1, (metrics?.approvedServices || 0) + (metrics?.pendingServices || 0))) * 100))}%`
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
