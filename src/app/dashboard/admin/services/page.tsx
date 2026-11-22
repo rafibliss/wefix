@@ -26,7 +26,7 @@ export default function AdminServicesPage() {
 
   const [services, setServices] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("pending"); // Pending is first/default
+  const [activeTab, setActiveTab] = useState("pending"); // 
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ export default function AdminServicesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title */}
+
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Service Approval & Moderation
@@ -117,25 +117,24 @@ export default function AdminServicesPage() {
         </p>
       </div>
 
-      {/* Status Filter Tabs */}
+
       <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-xl bg-[#111113] border border-[#27272A]">
         {STATUS_TABS.map((tab) => (
           <button
             key={tab}
             type="button"
             onClick={() => setActiveTab(tab)}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors cursor-pointer ${
-              activeTab === tab
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors cursor-pointer ${activeTab === tab
                 ? "bg-white text-zinc-950 shadow-sm"
                 : "text-zinc-400 hover:text-white hover:bg-[#18181B]"
-            }`}
+              }`}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      {/* Services Table */}
+
       <div className="bg-[#111113] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden">
         {services.length > 0 ? (
           <div className="overflow-x-auto">
@@ -165,9 +164,8 @@ export default function AdminServicesPage() {
                     <td className="py-3.5 px-4 font-bold text-white">${service.basePrice}</td>
                     <td className="py-3.5 px-4">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
-                          statusBadges[service.approvalStatus] || statusBadges.pending
-                        }`}
+                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${statusBadges[service.approvalStatus] || statusBadges.pending
+                          }`}
                       >
                         {service.approvalStatus}
                       </span>

@@ -74,7 +74,7 @@ export default function AdminTransactionsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title */}
+
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Financial Transactions & Revenue
@@ -84,7 +84,7 @@ export default function AdminTransactionsPage() {
         </p>
       </div>
 
-      {/* Prominent Total Revenue Banner Card */}
+
       <div className="p-8 rounded-2xl bg-[#111113] border border-[#27272A] shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
@@ -106,7 +106,7 @@ export default function AdminTransactionsPage() {
         </div>
       </div>
 
-      {/* Transactions Table */}
+
       <div className="bg-[#111113] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden">
         {payments.length > 0 ? (
           <div className="overflow-x-auto">
