@@ -174,7 +174,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Trust Pillars */}
+
       <ScrollReveal variant="zoom">
         <div className="rounded-3xl bg-gradient-to-b from-[#111113] to-[#09090B] border border-[#27272A] p-8 sm:p-12 space-y-10">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
