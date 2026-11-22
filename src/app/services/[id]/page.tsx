@@ -142,11 +142,18 @@ export default function ServiceDetailsPage(props: { params: Promise<{ id: string
     setSubmitting(true);
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const sessionToken = (session as unknown as { session?: { token?: string } })?.session?.token;
+
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (sessionToken) {
+        headers["Authorization"] = `Bearer ${sessionToken}`;
+      }
+
       const res = await fetch(`${apiUrl}/api/bookings`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers,
         credentials: "include", // Pass BetterAuth session cookie
         body: JSON.stringify({
           serviceId: service?._id,
