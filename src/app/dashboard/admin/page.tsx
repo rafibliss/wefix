@@ -117,7 +117,7 @@ export default function AdminOverviewPage() {
 
   return (
     <div className="space-y-8">
-      {/* Title */}
+
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Admin Control Center
@@ -127,9 +127,9 @@ export default function AdminOverviewPage() {
         </p>
       </div>
 
-      {/* 3 Main Stats Cards + Revenue */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {/* Total Users */}
+
         <div className="p-6 rounded-2xl bg-[#111113] border border-[#27272A] shadow-xl space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
             <span className="text-xs font-semibold uppercase tracking-wider">Total Users</span>
@@ -141,7 +141,7 @@ export default function AdminOverviewPage() {
           <p className="text-[11px] text-zinc-400">Customers, technicians, and staff</p>
         </div>
 
-        {/* Total Technicians */}
+
         <div className="p-6 rounded-2xl bg-[#111113] border border-[#27272A] shadow-xl space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
             <span className="text-xs font-semibold uppercase tracking-wider">Total Technicians</span>
@@ -155,7 +155,7 @@ export default function AdminOverviewPage() {
           <p className="text-[11px] text-zinc-400">Certified local specialists</p>
         </div>
 
-        {/* Pending Services */}
+
         <div className="p-6 rounded-2xl bg-[#111113] border border-[#27272A] shadow-xl space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
             <span className="text-xs font-semibold uppercase tracking-wider">Pending Services</span>
@@ -169,7 +169,7 @@ export default function AdminOverviewPage() {
           <p className="text-[11px] text-zinc-400">Awaiting moderation</p>
         </div>
 
-        {/* Total Revenue */}
+
         <div className="p-6 rounded-2xl bg-[#111113] border border-[#27272A] shadow-xl space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
             <span className="text-xs font-semibold uppercase tracking-wider">Platform Revenue</span>
@@ -184,7 +184,7 @@ export default function AdminOverviewPage() {
         </div>
       </div>
 
-      {/* Quick Navigation Cards */}
+
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Link
           href="/dashboard/admin/users"
@@ -216,7 +216,7 @@ export default function AdminOverviewPage() {
         </Link>
       </div>
 
-      {/* Pending Services Section (Quick Action) */}
+
       <div className="bg-[#111113] border border-[#27272A] rounded-2xl p-6 shadow-2xl space-y-5">
         <div className="flex items-center justify-between pb-4 border-b border-[#27272A]">
           <div>

@@ -116,7 +116,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title */}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -127,7 +127,7 @@ export default function AdminUsersPage() {
           </p>
         </div>
 
-        {/* Search */}
+
         <div className="relative w-full sm:w-64">
           <Search className="h-4 w-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
@@ -140,7 +140,7 @@ export default function AdminUsersPage() {
         </div>
       </div>
 
-      {/* Users Table */}
+
       <div className="bg-[#111113] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
@@ -158,7 +158,7 @@ export default function AdminUsersPage() {
                 const isSelf = user.email === loggedInEmail;
                 return (
                   <tr key={user._id} className="hover:bg-[#18181B]/40 transition-colors">
-                    {/* User Info */}
+
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
                         {user.image ? (
@@ -189,9 +189,8 @@ export default function AdminUsersPage() {
 
                     <td className="py-3.5 px-4">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
-                          roleColors[user.role] || roleColors.customer
-                        }`}
+                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${roleColors[user.role] || roleColors.customer
+                          }`}
                       >
                         {user.role}
                       </span>
@@ -201,7 +200,6 @@ export default function AdminUsersPage() {
                       {new Date(user.createdAt).toLocaleDateString()}
                     </td>
 
-                    {/* Change Role Selector */}
                     <td className="py-3.5 px-4 text-right">
                       {isSelf ? (
                         <span className="text-[11px] text-zinc-500 italic">Self-protected</span>
