@@ -182,7 +182,8 @@ export default function CustomerBookingsPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.message || "Failed to initiate payment");
+        const errorMsg = data.error ? `${data.message}: ${data.error}` : (data.message || "Failed to initiate payment");
+        toast.error(errorMsg);
         setPayingId(null);
         return;
       }
