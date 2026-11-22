@@ -259,28 +259,26 @@ export default function Home() {
           SECTION 2: DYNAMIC FEATURED SERVICES
       ========================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal variant="up">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300 mb-2">
-                <span>Featured Repairs</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                Latest Verified Repair Services
-              </h2>
-              <p className="text-sm text-zinc-400 mt-1">
-                Top repair solutions offered by certified local technicians
-              </p>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300 mb-2">
+              <span>Featured Repairs</span>
             </div>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
-            >
-              <span>View All Services</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Latest Verified Repair Services
+            </h2>
+            <p className="text-sm text-zinc-400 mt-1">
+              Top repair solutions offered by certified local technicians
+            </p>
           </div>
-        </ScrollReveal>
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
+          >
+            <span>View All Services</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
 
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
