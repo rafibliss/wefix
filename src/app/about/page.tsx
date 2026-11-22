@@ -137,7 +137,7 @@ export default function AboutPage() {
       </div>
 
 
-      {/* 4-Step Process Section */}
+
       <div className="space-y-10">
         <ScrollReveal variant="up">
           <div className="text-center space-y-3">
