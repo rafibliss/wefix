@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 import {
   Wrench,
   Search,
@@ -303,11 +304,16 @@ function BrowseServicesContent() {
         </div>
       ) : services.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <div
+          {services.map((service, idx) => (
+            <ScrollReveal
               key={service._id}
-              className="group flex flex-col h-full bg-[#111113] border border-[#27272A] hover:border-zinc-500 rounded-2xl overflow-hidden transition-all duration-200 shadow-lg"
+              variant="up"
+              delay={Math.min((idx % 4) * 50, 180)}
+              className="h-full"
             >
+              <div
+                className="group flex flex-col h-full bg-[#111113] border border-[#27272A] hover:border-zinc-500 rounded-2xl overflow-hidden transition-all duration-200 shadow-lg"
+              >
               {/* Image banner */}
               <div className="relative h-44 w-full bg-zinc-900 overflow-hidden shrink-0">
                 {service.image ? (
@@ -386,6 +392,7 @@ function BrowseServicesContent() {
                 </Link>
               </div>
             </div>
+          </ScrollReveal>
           ))}
         </div>
       ) : (

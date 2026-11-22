@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 import {
   Wrench,
   Search,
@@ -258,26 +259,28 @@ export default function Home() {
           SECTION 2: DYNAMIC FEATURED SERVICES
       ========================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300 mb-2">
-              <span>Featured Repairs</span>
+        <ScrollReveal variant="up">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300 mb-2">
+                <span>Featured Repairs</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Latest Verified Repair Services
+              </h2>
+              <p className="text-sm text-zinc-400 mt-1">
+                Top repair solutions offered by certified local technicians
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Latest Verified Repair Services
-            </h2>
-            <p className="text-sm text-zinc-400 mt-1">
-              Top repair solutions offered by certified local technicians
-            </p>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
+            >
+              <span>View All Services</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
-          >
-            <span>View All Services</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+        </ScrollReveal>
 
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -298,91 +301,92 @@ export default function Home() {
           </div>
         ) : services.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <div
-                key={service._id}
-                className="group flex flex-col h-full bg-[#111113] border border-[#27272A] hover:border-zinc-500 rounded-2xl overflow-hidden transition-all duration-200 shadow-lg"
-              >
-                {/* Service Card Image Banner */}
-                <div className="relative h-48 w-full bg-zinc-900 overflow-hidden shrink-0">
-                  {service.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="h-full w-full flex items-center justify-center text-zinc-600 bg-zinc-900">
-                      <Wrench className="h-10 w-10" />
-                    </div>
-                  )}
+            {services.map((service, idx) => (
+              <ScrollReveal key={service._id} variant="up" delay={idx * 60}>
+                <div
+                  className="group flex flex-col h-full bg-[#111113] border border-[#27272A] hover:border-zinc-500 rounded-2xl overflow-hidden transition-all duration-200 shadow-lg"
+                >
+                  {/* Service Card Image Banner */}
+                  <div className="relative h-48 w-full bg-zinc-900 overflow-hidden shrink-0">
+                    {service.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center text-zinc-600 bg-zinc-900">
+                        <Wrench className="h-10 w-10" />
+                      </div>
+                    )}
 
-                  {/* Badges on Image */}
-                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                    <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#09090B]/90 backdrop-blur-md text-white border border-[#27272A]">
-                      {service.category}
-                    </span>
+                    {/* Badges on Image */}
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#09090B]/90 backdrop-blur-md text-white border border-[#27272A]">
+                        {service.category}
+                      </span>
+                    </div>
+
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-950/80 backdrop-blur-md text-emerald-300 border border-emerald-800/60">
+                        {service.serviceMode}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-950/80 backdrop-blur-md text-emerald-300 border border-emerald-800/60">
-                      {service.serviceMode}
-                    </span>
+                  {/* Service Card Content */}
+                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg text-white group-hover:text-zinc-200 transition-colors line-clamp-1">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Technician & Area info */}
+                    <div className="pt-2 border-t border-[#27272A] space-y-2 text-xs text-zinc-400">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <User className="h-3.5 w-3.5 text-zinc-300" />
+                          <span className="truncate max-w-[140px] text-zinc-300 font-medium">
+                            {service.technicianName}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5 text-zinc-400" />
+                          <span>{service.estimatedDuration}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-[11px] text-zinc-400 truncate max-w-[150px]">
+                          <MapPin className="h-3 w-3 text-zinc-400 shrink-0" />
+                          <span className="truncate">{service.serviceArea}</span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Starts at</span>
+                          <p className="text-base font-bold text-white leading-none mt-0.5">
+                            ${service.basePrice}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <Link
+                      href={`/services/${service._id}`}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#FAFAFA] hover:bg-zinc-200 text-[#09090B] font-semibold text-sm transition-colors"
+                    >
+                      <span>View Details</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
                   </div>
                 </div>
-
-                {/* Service Card Content */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-lg text-white group-hover:text-zinc-200 transition-colors line-clamp-1">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Technician & Area info */}
-                  <div className="pt-2 border-t border-[#27272A] space-y-2 text-xs text-zinc-400">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <User className="h-3.5 w-3.5 text-zinc-300" />
-                        <span className="truncate max-w-[140px] text-zinc-300 font-medium">
-                          {service.technicianName}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-zinc-400" />
-                        <span>{service.estimatedDuration}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-[11px] text-zinc-400 truncate max-w-[150px]">
-                        <MapPin className="h-3 w-3 text-zinc-400 shrink-0" />
-                        <span className="truncate">{service.serviceArea}</span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Starts at</span>
-                        <p className="text-base font-bold text-white leading-none mt-0.5">
-                          ${service.basePrice}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Button */}
-                  <Link
-                    href={`/services/${service._id}`}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#FAFAFA] hover:bg-zinc-200 text-[#09090B] font-semibold text-sm transition-colors"
-                  >
-                    <span>View Details</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         ) : (
@@ -410,43 +414,46 @@ export default function Home() {
           SECTION 3: HOW WEFIX WORKS (4-STEP FLOW)
       ========================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300">
-            <span>Simple 4-Step Process</span>
+        <ScrollReveal variant="up">
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#18181B] border border-[#27272A] text-xs font-medium text-zinc-300">
+              <span>Simple 4-Step Process</span>
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-white">How WeFix Works</h2>
+            <p className="text-sm text-zinc-400">
+              A secure, transparent repair booking flow designed around customer peace of mind
+            </p>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-white">How WeFix Works</h2>
-          <p className="text-sm text-zinc-400">
-            A secure, transparent repair booking flow designed around customer peace of mind
-          </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step) => {
+          {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div
-                key={step.num}
-                className="relative bg-[#111113] border border-[#27272A] rounded-2xl p-6 flex flex-col justify-between hover:border-zinc-500 transition-colors shadow-lg"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="h-11 w-11 rounded-xl bg-[#18181B] border border-[#27272A] flex items-center justify-center text-white">
-                      <Icon className="h-5 w-5" />
+              <ScrollReveal key={step.num} variant="zoom" delay={idx * 70}>
+                <div
+                  className="relative bg-[#111113] border border-[#27272A] rounded-2xl p-6 flex flex-col justify-between hover:border-zinc-500 transition-colors shadow-lg h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="h-11 w-11 rounded-xl bg-[#18181B] border border-[#27272A] flex items-center justify-center text-white">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-2xl font-black text-zinc-700 tracking-wider font-mono">
+                        {step.num}
+                      </span>
                     </div>
-                    <span className="text-2xl font-black text-zinc-700 tracking-wider font-mono">
-                      {step.num}
-                    </span>
+
+                    <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-xs text-zinc-400 leading-relaxed">{step.description}</p>
                   </div>
 
-                  <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">{step.description}</p>
+                  <div className="mt-6 pt-4 border-t border-[#27272A]/60 flex items-center gap-1.5 text-[11px] font-medium text-zinc-400">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-zinc-400" />
+                    <span>Step {step.num} Verified</span>
+                  </div>
                 </div>
-
-                <div className="mt-6 pt-4 border-t border-[#27272A]/60 flex items-center gap-1.5 text-[11px] font-medium text-zinc-400">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-zinc-400" />
-                  <span>Step {step.num} Verified</span>
-                </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -458,61 +465,68 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Categories Grid */}
         <div>
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Popular Repair Categories
-            </h2>
-            <p className="text-sm text-zinc-400">
-              Select an appliance or device to immediately filter certified specialists
-            </p>
-          </div>
+          <ScrollReveal variant="up">
+            <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Popular Repair Categories
+              </h2>
+              <p className="text-sm text-zinc-400">
+                Select an appliance or device to immediately filter certified specialists
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {categories.map((cat) => {
+            {categories.map((cat, idx) => {
               const Icon = cat.icon;
               return (
-                <Link
-                  key={cat.name}
-                  href={`/services?category=${encodeURIComponent(cat.name)}`}
-                  className="group flex flex-col items-start p-5 rounded-2xl bg-[#111113] border border-[#27272A] hover:border-white transition-all shadow-md"
-                >
-                  <div className="h-10 w-10 rounded-xl bg-[#18181B] border border-[#27272A] flex items-center justify-center text-white mb-3 group-hover:scale-110 transition-transform">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-sm font-bold text-white group-hover:text-zinc-200 transition-colors">
-                    {cat.name}
-                  </h3>
-                  <p className="text-[11px] text-zinc-400 mt-0.5 line-clamp-1">{cat.count}</p>
-                </Link>
+                <ScrollReveal key={cat.name} variant="blur" delay={idx * 40}>
+                  <Link
+                    href={`/services?category=${encodeURIComponent(cat.name)}`}
+                    className="group flex flex-col items-start p-5 rounded-2xl bg-[#111113] border border-[#27272A] hover:border-white transition-all shadow-md h-full"
+                  >
+                    <div className="h-10 w-10 rounded-xl bg-[#18181B] border border-[#27272A] flex items-center justify-center text-white mb-3 group-hover:scale-110 transition-transform">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-sm font-bold text-white group-hover:text-zinc-200 transition-colors">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[11px] text-zinc-400 mt-0.5 line-clamp-1">{cat.count}</p>
+                  </Link>
+                </ScrollReveal>
               );
             })}
 
             {/* "Browse All" Card to complete grid nicely */}
-            <Link
-              href="/services"
-              className="flex flex-col items-center justify-center p-5 rounded-2xl bg-[#18181B] border border-[#3F3F46] hover:border-white transition-all text-center group"
-            >
-              <div className="h-10 w-10 rounded-xl bg-white text-black flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <ArrowRight className="h-5 w-5" />
-              </div>
-              <span className="text-xs font-bold text-white">Explore All Services</span>
-              <span className="text-[10px] text-zinc-400 mt-0.5">Directory & Filters</span>
-            </Link>
+            <ScrollReveal variant="blur" delay={categories.length * 40}>
+              <Link
+                href="/services"
+                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-[#18181B] border border-[#3F3F46] hover:border-white transition-all text-center group h-full"
+              >
+                <div className="h-10 w-10 rounded-xl bg-white text-black flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                  <ArrowRight className="h-5 w-5" />
+                </div>
+                <span className="text-xs font-bold text-white">Explore All Services</span>
+                <span className="text-[10px] text-zinc-400 mt-0.5">Directory & Filters</span>
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
 
         {/* Why Choose WeFix Stats / Trust Banner */}
-        <div className="rounded-2xl bg-[#111113] border border-[#27272A] p-8 sm:p-12 shadow-2xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-[#27272A]">
-            {stats.map((s, idx) => (
-              <div key={s.label} className={idx !== 0 ? "pt-6 md:pt-0 md:pl-6" : ""}>
-                <p className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{s.value}</p>
-                <p className="text-sm font-semibold text-zinc-200 mt-1">{s.label}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">{s.sub}</p>
-              </div>
-            ))}
+        <ScrollReveal variant="up">
+          <div className="rounded-2xl bg-[#111113] border border-[#27272A] p-8 sm:p-12 shadow-2xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-[#27272A]">
+              {stats.map((s, idx) => (
+                <div key={s.label} className={idx !== 0 ? "pt-6 md:pt-0 md:pl-6" : ""}>
+                  <p className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{s.value}</p>
+                  <p className="text-sm font-semibold text-zinc-200 mt-1">{s.label}</p>
+                  <p className="text-xs text-zinc-400 mt-0.5">{s.sub}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );
