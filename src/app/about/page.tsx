@@ -102,7 +102,7 @@ export default function AboutPage() {
 
   return (
     <div className="space-y-20 pb-20 pt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Hero Section */}
+
       <div className="text-center space-y-6 max-w-3xl mx-auto pt-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-[#27272A] text-xs font-semibold text-zinc-300">
           <Wrench className="h-3.5 w-3.5 text-zinc-400" />
@@ -135,7 +135,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* 4-Step Process Section */}
+
       <div className="space-y-10">
         <div className="text-center space-y-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
@@ -169,7 +169,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Trust Pillars */}
+
       <div className="rounded-3xl bg-gradient-to-b from-[#111113] to-[#09090B] border border-[#27272A] p-8 sm:p-12 space-y-10">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
@@ -197,7 +197,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Device Categories Covered */}
+
       <div className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

@@ -84,7 +84,7 @@ export default function AdminBookingsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title */}
+
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           All Platform Bookings
@@ -94,25 +94,24 @@ export default function AdminBookingsPage() {
         </p>
       </div>
 
-      {/* Filter Tabs */}
+
       <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-xl bg-[#111113] border border-[#27272A]">
         {STATUS_TABS.map((tab) => (
           <button
             key={tab}
             type="button"
             onClick={() => setActiveTab(tab)}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors cursor-pointer ${
-              activeTab === tab
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors cursor-pointer ${activeTab === tab
                 ? "bg-white text-zinc-950 shadow-sm"
                 : "text-zinc-400 hover:text-white hover:bg-[#18181B]"
-            }`}
+              }`}
           >
             {tab.replace("-", " ")}
           </button>
         ))}
       </div>
 
-      {/* Bookings Table */}
+
       <div className="bg-[#111113] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden">
         {bookings.length > 0 ? (
           <div className="overflow-x-auto">
@@ -151,9 +150,8 @@ export default function AdminBookingsPage() {
 
                     <td className="py-3.5 px-4">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
-                          statusColors[booking.status] || statusColors.requested
-                        }`}
+                        className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${statusColors[booking.status] || statusColors.requested
+                          }`}
                       >
                         {booking.status}
                       </span>
@@ -161,11 +159,10 @@ export default function AdminBookingsPage() {
 
                     <td className="py-3.5 px-4">
                       <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
-                          booking.paymentStatus === "paid"
+                        className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${booking.paymentStatus === "paid"
                             ? "bg-emerald-950/40 text-emerald-300 border-emerald-800"
                             : "bg-amber-950/40 text-amber-300 border-amber-800"
-                        }`}
+                          }`}
                       >
                         <CreditCard className="h-2.5 w-2.5 mr-1" />
                         {booking.paymentStatus}
