@@ -8,7 +8,7 @@ interface ScrollRevealProps {
   children: ReactNode;
   variant?: RevealVariant;
   delay?: number; // In milliseconds
-  duration?: number; // In milliseconds (default 350ms)
+  duration?: number; // In milliseconds (default 320ms)
   className?: string;
   as?: keyof HTMLElementTagNameMap;
 }
@@ -17,11 +17,12 @@ export default function ScrollReveal({
   children,
   variant = "up",
   delay = 0,
-  duration = 380,
+  duration = 320,
   className = "",
   as: Component = "div",
 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  // Always default to visible so content is NEVER trapped at opacity: 0
+  const [isVisible, setIsVisible] = useState(true);
   const elementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -34,20 +35,25 @@ export default function ScrollReveal({
       return;
     }
 
+    // Safety fallback timer: guarantee 100% visibility even if observer is bypassed
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 250);
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Trigger once: unobserve immediately so animation never retriggers or flickers
+          clearTimeout(fallbackTimer);
           if (elementRef.current) {
             observer.unobserve(elementRef.current);
           }
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.01,
+        rootMargin: "0px 0px 100px 0px", // Generous positive margin: triggers well before scroll reaches element
       }
     );
 
@@ -57,13 +63,15 @@ export default function ScrollReveal({
     }
 
     return () => {
+      clearTimeout(fallbackTimer);
       if (currentElem) {
         observer.unobserve(currentElem);
       }
     };
   }, []);
 
-  // Compute transform & filter classes based on variant & visibility
+  // Subtle transforms without hiding content: opacity stays at readable 100% or subtle 90%
+  // so NO section ever appears as a black void or blank space.
   const getVariantStyles = () => {
     if (isVisible) {
       return "opacity-100 translate-y-0 scale-100 blur-0";
@@ -71,12 +79,12 @@ export default function ScrollReveal({
 
     switch (variant) {
       case "zoom":
-        return "opacity-0 scale-[0.97] translate-y-2.5";
+        return "opacity-95 scale-[0.985] translate-y-1.5";
       case "blur":
-        return "opacity-0 blur-[4px] translate-y-2";
+        return "opacity-95 blur-[0.5px] translate-y-1";
       case "up":
       default:
-        return "opacity-0 translate-y-3.5";
+        return "opacity-95 translate-y-2";
     }
   };
 
