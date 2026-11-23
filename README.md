@@ -24,7 +24,7 @@ The frontend is built with **Next.js 16 (App Router)**, **React 19**, **TypeScri
 | Role | Name | Email | Password |
 | :--- | :--- | :--- | :--- |
 | **Admin** | Alamin | `alamin@example.com` | Password1 |
-| **Technician** | Karim Uddin | `sn@ts.com` | Password1 |
+| **Technician** | Rafi | `sn@ts.com` | Password1 |
 | **Customer** | User | `user1@gmail.com` | Password |
 
 ### Quick test flow (2 minutes)
