@@ -45,7 +45,7 @@ function SuccessContent() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
         const sessionToken = (session as unknown as { session?: { token?: string } })?.session?.token;
-
+        console.log("season token", sessionToken);
         const headers: Record<string, string> = {};
         if (sessionToken) {
           headers["Authorization"] = `Bearer ${sessionToken}`;
