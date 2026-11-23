@@ -23,10 +23,9 @@ The frontend is built with **Next.js 16 (App Router)**, **React 19**, **TypeScri
 
 | Role | Name | Email | Password |
 | :--- | :--- | :--- | :--- |
-| **Admin** | Alamin Admin | `alamin@example.com` | Provided separately (not stored in repo) |
-| **Technician** | Tanvir Hasan | `tanvir.tech@wefix.com` | Provided separately (not stored in repo) |
-| **Technician** | Karim Uddin | `karim.repair@wefix.com` | Provided separately (not stored in repo) |
-| **Customer** | Create via `/sign-up` | any valid email | Choose your own |
+| **Admin** | Alamin | `alamin@example.com` | Password1 |
+| **Technician** | Karim Uddin | `sn@ts.com` | Password1 |
+| **Customer** | User | `user1@gmail.com` | Password |
 
 ### Quick test flow (2 minutes)
 
