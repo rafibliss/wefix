@@ -40,6 +40,10 @@ export default function CustomerDashboardOverview() {
 
   useEffect(() => {
     let ignore = false;
+    // Wait for auth session and token before fetching
+    if (!session?.user) return; // session not loaded yet
+    const token = (session as unknown as { session?: { token?: string } })?.session?.token;
+    if (!token) return; // token not available yet
 
     async function fetchBookings() {
       setLoading(true);
