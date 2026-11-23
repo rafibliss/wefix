@@ -1,12 +1,10 @@
-# FixMate — On-Demand Smart Device & Home Appliance Repair Platform
+# WeFix — On-Demand Smart Device & Home Appliance Repair Platform
 
 > **Live application:** https://wefix-orcin.vercel.app
->
-> FixMate is deployed under the **WeFix** brand in the current UI. Both names refer to the same project.
 
 ## Purpose
 
-FixMate is a full-stack, on-demand repair marketplace that connects customers with verified technicians for smartphones, laptops, TVs, ACs, refrigerators, washing machines, and electrical appliances.
+WeFix is a full-stack, on-demand repair marketplace that connects customers with verified technicians for smartphones, laptops, TVs, ACs, refrigerators, washing machines, and electrical appliances.
 
 The platform runs on a **pay-after-completion** model:
 
